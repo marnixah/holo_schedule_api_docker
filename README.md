@@ -8,7 +8,7 @@ To run with docker run, run the following
 docker run -d \
     --network host \
     -e FLASK_RUN_PORT=5000 \
-    holo_schedule_api:latest
+    marnixah/holo_schedule_api:latest
 ```
 ### Docker-compose file
 To run with docker-compose, simply run
