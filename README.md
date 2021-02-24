@@ -6,6 +6,7 @@ A Web API to get hololive's schedule.
 To run with docker run, run the following
 ```bash
 docker run -d \
+    --name "holo_schedule_api" \
     --network host \
     -e FLASK_RUN_PORT=5000 \
     marnixah/holo_schedule_api:latest
