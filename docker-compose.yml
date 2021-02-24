@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+    api:
+        build: .
+        network: host
+    environment:
+        FLASK_RUN_PORT: 5000
