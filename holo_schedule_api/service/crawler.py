@@ -16,7 +16,8 @@ class Crawler:
         self.schedule_cache = {
             "hololive": ScheduleCache("Hololive", self.crawl("hololive")),
             "english": ScheduleCache("EN", self.crawl("english")),
-            "indonesia": ScheduleCache("ID", self.crawl("indonesia"))
+            "indonesia": ScheduleCache("ID", self.crawl("indonesia")),
+            "all": ScheduleCache("", self.crawl(""))
         }
 
     def get_schedules(self, region_code="hololive"):
