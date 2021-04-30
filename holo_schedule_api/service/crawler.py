@@ -20,7 +20,7 @@ class Crawler:
             "all": ScheduleCache("", self.crawl(""))
         }
 
-    def get_schedules(self, region_code="hololive"):
+    def get_schedules(self, region_code="all"):
         if self.schedule_cache[region_code].is_expired():
             self.schedule_cache[region_code].update(self.crawl(region_code))
 
