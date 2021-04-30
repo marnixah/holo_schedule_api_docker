@@ -1,6 +1,7 @@
 import requests
 import re
 from datetime import datetime, timedelta, timezone
+import json
 
 from bs4 import BeautifulSoup
 
@@ -55,13 +56,27 @@ class Crawler:
         """ Generates schedule from beautifulSoup element
         """
         youtube_url = element.find("a", href=True)["href"]
+        title = self.get_youtube_title(youtube_url)
         member = element.find("div", class_="col text-right name").text.strip()
         time = element.find(
             "div",
             class_="col-5 col-sm-5 col-md-5 text-left datetime").text.strip()
 
-        return Schedule(time, member, youtube_url)
+        return Schedule(time, member, youtube_url, title)
 
+    def get_youtube_title(self, youtube_url):
+        params = {"format": "json", "url": youtube_url}
+        url = "https://www.youtube.com/oembed"
+        ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+        
+        with requests.get(url, params=params, headers={'User-Agent': ua}) as response:
+            try:
+                data = response.json()
+            except json.JSONDecodeError as e:
+                print(f"unable to get title of {youtube_url}")
+                return None
+            return data['title']
+    
     def get_date_tags(self, containers):
         """ Classify streams by date and label with start of container id.
             Returns list of tuples which contains start of container id and date of
