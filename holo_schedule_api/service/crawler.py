@@ -11,7 +11,7 @@ from service.schedule_cache import ScheduleCache
 
 URL = "https://schedule.hololive.tv/lives/"
 
-
+youtube_cache = {}
 class Crawler:
     def __init__(self):
         self.schedule_cache = {
@@ -66,6 +66,8 @@ class Crawler:
         return Schedule(time, member, youtube_url, title)
 
     def get_youtube_title(self, youtube_url):
+        if youtube_url in youtube_cache:
+            return youtube_cache[youtube_url]
         params = {"format": "json", "url": youtube_url}
         url = "https://www.youtube.com/oembed"
         ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
@@ -76,6 +78,7 @@ class Crawler:
             except json.JSONDecodeError as e:
                 print(f"unable to get title of {youtube_url}")
                 return None
+            youtube_cache[youtube_url] = data['title']
             return data['title']
     
     def get_date_tags(self, containers):
