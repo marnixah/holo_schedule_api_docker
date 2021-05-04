@@ -1,7 +1,7 @@
 from typing import List
 from datetime import datetime, timedelta, timezone
 
-from holo_schedule_api.service.date_schedule import DateSchedule
+from service.date_schedule import DateSchedule
 
 
 class ScheduleCache:

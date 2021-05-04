@@ -5,9 +5,9 @@ import json
 
 from bs4 import BeautifulSoup
 
-from holo_schedule_api.service.schedule import Schedule
-from holo_schedule_api.service.date_schedule import DateSchedule
-from holo_schedule_api.service.schedule_cache import ScheduleCache
+from service.schedule import Schedule
+from service.date_schedule import DateSchedule
+from service.schedule_cache import ScheduleCache
 
 URL = "https://schedule.hololive.tv/lives/"
 

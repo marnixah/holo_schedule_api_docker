@@ -1,4 +1,4 @@
-from holo_schedule_api.service.schedule_cache import ScheduleCache
+from service.schedule_cache import ScheduleCache
 
 
 class TestScheduleCache:

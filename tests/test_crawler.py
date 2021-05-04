@@ -2,8 +2,8 @@ import requests
 import pytest
 from bs4 import BeautifulSoup
 
-from holo_schedule_api.service.crawler import Crawler
-from holo_schedule_api.service.date_schedule import DateSchedule
+from service.crawler import Crawler
+from service.date_schedule import DateSchedule
 
 
 @pytest.fixture

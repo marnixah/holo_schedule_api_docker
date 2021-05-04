@@ -1,7 +1,7 @@
 from flask import request, jsonify, abort
 from flask_classful import FlaskView, route
 
-from holo_schedule_api.service.crawler import Crawler
+from service.crawler import Crawler
 
 
 class WebService(FlaskView):

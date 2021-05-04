@@ -11,4 +11,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD cd /app/holo_schedule_api && FLASK_APP=server.py flask run
+CMD python3 holo_schedule_api/server.py
