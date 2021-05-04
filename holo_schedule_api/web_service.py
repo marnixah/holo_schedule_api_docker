@@ -12,7 +12,9 @@ class WebService(FlaskView):
             "en": "english",
             "id": "indonesia"
         }
-
+    @route("/health", methods=["GET"])
+    def health_check(self):
+        return jsonify({"status":"OK"}), 200
     @route("/schedules", methods=["GET"])
     @route("<string:region_code>/schedules", methods=["GET"])
     def get_schedules(self, region_code=None):
