@@ -66,8 +66,6 @@ class Crawler:
         return Schedule(time, member, youtube_url, title)
 
     def get_youtube_title(self, youtube_url):
-        if youtube_url in youtube_cache:
-            return youtube_cache[youtube_url]
         params = {"format": "json", "url": youtube_url}
         url = "https://www.youtube.com/oembed"
         ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
@@ -114,11 +112,12 @@ class Crawler:
                 i + 1) != len(tags) else len(containers)]
 
             for container in containers_of_date:
-                schedules.extend([
+                to_add = [
                     self.generate_schedule(schedule_soup) for schedule_soup in
                     container.find_all("div", class_="col-6 col-sm-4 col-md-3")
                     if schedule_soup != None
-                ])
+                ]
+                schedules.extend([i for i in to_add if i])
 
             date_schedules.append(DateSchedule(tag[1], schedules))
 
